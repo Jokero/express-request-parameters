@@ -42,11 +42,12 @@ function setParameters(schema, options) {
                     var errorMessage = errorMessageFunction(req);
                     var err          = errorFactory(errorMessage, errors);
 
-                    return next(err);
+                    return Promise.reject(err);
                 }
 
-                next(errors);
-            });
+                return Promise.reject(errors);
+            })
+            .catch(next);
     };
 }
 
