@@ -1,8 +1,8 @@
 var transformRequest = require('./lib/transformRequest');
-var _                = require('lodash');
+var merge            = require('lodash.merge');
 
 /**
- * @param {Function}        paramsConfig
+ * @param {Function|Object} schema
  * @param {Object}          [options]
  * @param {String}            [options.rawParamsName=rawParameters]
  * @param {String}            [options.paramsName=parameters]
@@ -11,7 +11,7 @@ var _                = require('lodash');
  *
  * @returns {Function}
  */
-function setParameters(paramsConfig, options) {
+function setParameters(schema, options) {
     options = Object.assign({}, setParameters.options, options);
 
     var errorMessageFunction = options.errorMessage instanceof Function ? options.errorMessage : function() {
@@ -28,9 +28,11 @@ function setParameters(paramsConfig, options) {
     var paramsName    = options.paramsName || 'parameters';
 
     return function(req, res, next) {
-        req[rawParamsName] = _.merge({}, req.query, req.body, req.params);
+        req[rawParamsName] = merge({}, req.query, req.body, req.params);
 
-        transformRequest(req[rawParamsName], paramsConfig(req))
+        const resolvedSchema = schema instanceof Function ? schema(req) : schema;
+
+        transformRequest(req[rawParamsName], resolvedSchema)
             .then(function(params) {
                 req[paramsName] = params;
                 next();
