@@ -1,5 +1,6 @@
 {
   "name": "express-request-parameters",
+  "description": "Middleware for processing request data (setting default values, filtering, validation)",
   "version": "0.1.1",
   "author": {
     "name": "Dmitry Kirilyuk",
@@ -10,11 +11,43 @@
     "url": "https://github.com/Jokero/express-request-parameters.git"
   },
   "license": "MIT",
+  "keywords": [
+    "validation",
+    "validate",
+    "validator",
+    "declarative",
+    "filter",
+    "defaults",
+    "schema",
+    "nested",
+    "async"
+  ],
   "engines": {
     "node": ">=4.0.0"
   },
+  "files": [
+    "dist/",
+    "lib/",
+    "examples/",
+    "LICENSE",
+    "README.md"
+  ],
   "dependencies": {
     "lodash.merge": "4.6.0",
-    "transformer-chain": "0.0.1"
+    "transformer-chain": "^0.1.1"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "chai-as-promised": "6.0.0",
+    "express": "4.15.2",
+    "mocha": "3.2.0",
+    "sinon": "1.17.7",
+    "sinon-chai": "2.8.0",
+    "supertest": "3.0.0",
+    "supertest-as-promised": "4.0.2",
+    "body-parser": "1.17.1"
+  },
+  "scripts": {
+    "test": "mocha 'tests/**/*.js' --timeout 5000"
   }
 }
