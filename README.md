@@ -7,7 +7,7 @@ The processing itself is performed by [transformer-chain](https://github.com/Jok
 [![NPM version](https://img.shields.io/npm/v/express-request-parameters.svg)](https://npmjs.org/package/express-request-parameters)
 [![Build status](https://img.shields.io/travis/Jokero/express-request-parameters.svg)](https://travis-ci.org/Jokero/express-request-parameters)
 
-**Note:** This module will only work with Node.js >= 4.0.
+**Note:** This module works in Node.js >= 4.0.
 
 ## Installation
 
