@@ -28,7 +28,7 @@
   "files": [
     "dist/",
     "lib/",
-    "examples/",
+    "index.js",
     "LICENSE",
     "README.md"
   ],
