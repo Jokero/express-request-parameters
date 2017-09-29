@@ -29,6 +29,15 @@ describe('express-request-parameters', function() {
         delete parameters.options;
     });
 
+    context('throws exception when schema has incorrect type', function() {
+        [false, null, undefined, [{ a: 1 }]].forEach(schema => {
+            it(`schema = ${JSON.stringify(schema)}`, function() {
+                const fn = () => parameters(schema);
+                expect(fn).to.throw('schema must be either plain object or function returning a schema object');
+            });
+        });
+    });
+
     it('puts processed data into req.parameters', function() {
         const app = createApp();
         app.post('/books', parameters(bookSchema), (req, res) => {
